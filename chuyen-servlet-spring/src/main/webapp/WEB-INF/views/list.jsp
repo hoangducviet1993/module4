@@ -35,19 +35,19 @@
         <th>Delete</th>
         <th>View</th>
     </tr>
-    <c:forEach var="i" begin="0" end="${product.size() -1}">
+    <c:forEach var="i" begin="0" end="${products.size() -1}">
         <tr>
-            <td>${product.get(i).id}</td>
-            <td>${product.get(i).name}</td>
-            <td>${product.get(i).price}</td>
-            <td>${product.get(i).quantity}</td>
-            <td>${product.get(i).color}</td>
-            <td>${category.get(i).name}</td>
-            <td><a href="/products?action=edit&id=${product.get(i).id}">Edit</a></td>
+            <td>${products.get(i).id}</td>
+            <td>${products.get(i).name}</td>
+            <td>${products.get(i).price}</td>
+            <td>${products.get(i).quantity}</td>
+            <td>${products.get(i).color}</td>
+            <td>${categories.get(i).name}</td>
+            <td><a href="/edit?id=${products.get(i).id}">Edit</a></td>
             <td><a onclick="return confirm('Are you sure?')"
-                   href="/products?action=delete&id=${product.get(i).id}">Delete</a></td>
+                   href="/delete?id=${products.get(i).id}">Delete</a></td>
                 <%--            <td><a href="" >Delete</a></td>--%>
-            <td><a href="">View</a></td>
+<%--            <td><a href="">View</a></td>--%>
                 <%--            <td><a href="/products?act=edit&id=${product.id}">Edit</a></td>--%>
                 <%--            "onclick="return confirm('Are you sure?')"--%>
                 <%--            href="/products?action=delete&id=${product.id}"--%>

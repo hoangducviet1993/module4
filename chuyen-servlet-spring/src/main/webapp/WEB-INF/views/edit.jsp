@@ -39,7 +39,7 @@
             <th>CategoryID:</th>
             <td>
                 <select name="categoryId">
-                    <option value="">-</option>
+                    <option value="">${product.categoryId}</option>
                     <c:forEach var="category" items="${categories}">
                         <option value="${category.id}">${category.id}. ${category.name}</option>
                     </c:forEach>
