@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import thproduct.model.Category;
 import thproduct.model.Product;
@@ -17,6 +18,7 @@ import java.util.List;
 
 
 @Controller
+//@RequestMapping("/products")
 public class ProductController {
     ProductServiceImpl productService = new ProductServiceImpl();
     CategoryService categoryService = new CategoryServiceImpl();
@@ -61,15 +63,18 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String createProduct(Model model,
-                                @RequestParam String name,
-                                @RequestParam int price,
-                                @RequestParam int quantity,
-                                @RequestParam String color,
-                                @RequestParam int categoryId
-    ) throws SQLException {
-        productService.save(new Product(name, price, quantity, color, categoryId));
-        return "create";
+//    public String createProduct(Model model,
+//                                @RequestParam String name,
+//                                @RequestParam int price,
+//                                @RequestParam int quantity,
+//                                @RequestParam String color,
+//                                @RequestParam int categoryId
+//    ) throws SQLException {
+//        productService.save(new Product(name, price, quantity, color, categoryId));
+//        return "create";
+    public String createProduct(Product product) throws SQLException {
+        productService.save(product);
+        return "redirect:/products";
     }
 
     @GetMapping("/edit")
