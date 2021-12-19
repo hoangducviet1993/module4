@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Product</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
 </head>
 <body>
-<a href="/products/create">Create new product</a>
-<h1>Product</h1>
-<table border="1" cellpadding="5">
+<h3>Products</h3>
+<p>
+<p>
+    <a th:href="@{/products/create-product}">
+        Create new product
+    </a>
+</p>
+</p>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+<table id = "customers">
+    <thead>
     <tr>
         <th>Name</th>
         <th>Price</th>
@@ -17,18 +27,21 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <th:block th:each="product : ${products}">
-        <tr>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.quantity}"></td>
-            <td th:text="${product.color}"></td>
-            <td th:if="${product.category}" th:text="${product.category.name}"></td>
-            <td th:unless="${product.category}"></td>
-            <td><a th:href="@{/products/edit/__${product.id}__ }">Edit</a></td>
-            <td><a th:href="@{/products/delete/__${product.id}__ }">Delete</a></td>
-        </tr>
-    </th:block>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.color}"></td>
+        <td th:if="${product.category}" th:text="${product.category.name}"></td>
+        <td th:unless="${product.category}"></td>
+        <td><a th:href="@{/products/edit/__${product.id}__ }">Edit</a></td>
+        <td><a th:href="@{/products/delete/__${product.id}__ } "
+               onclick="return confirm('Are you sure?')">Delete</a></td>
+    </tr>
+    </tbody>
 </table>
+<footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Edit Product</h3>
+<p>
+    <a th:href="@{/products}">
+        Back to product list
+    </a>
+</p>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+<div id="form">
+    <form action="#" th:action="@{/products/edit}" th:object="${product}"
+          method="POST" novalidate="novalidate">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <div>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </div>
+        <div>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </div>
+        <div>
+            <td>Quantity:</td>
+            <td><input type="text" th:field="*{quantity}"/></td>
+        </div>
+        <div>
+            <td>Color:</td>
+            <td><input type="text" th:field="*{color}"/></td>
+        </div>
+        <div>
+            <td>Category:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c : ${categories}"
+                            th:value="${c.id}" th:text="${c.name}"></option>
+                </select>
+            </td>
+        </div>
+        <input type="submit" value="Edit"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
