@@ -5,6 +5,7 @@ import com.codegym.cms.model.Product;
 import com.codegym.cms.service.ICategoryService;
 import com.codegym.cms.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,39 @@ public class ProductController {
     @Autowired
     private ICategoryService categoryService;
 
+    @ModelAttribute("categories")
+    public Iterable<Category> categories() {
+        return categoryService.findAll();
+    }
+
     @GetMapping("")
-    public String showList(Model model) {
-        Iterable<Product> products = productService.findAll();
+    public String showList(Model model, String key) {
+        Iterable<Product> products;
+        if (key != null) {
+            products = productService.findByNameContaining(key);
+
+        } else {
+            products = productService.findAll();
+
+        }
         model.addAttribute("products", products);
         return "/list";
+
+    }
+
+    @GetMapping("sort")
+    public String showListSort(Model model, String key ) {
+        Iterable<Product> products;
+        if (key != null) {
+            products = productService.findByNameContaining(key);
+
+        } else {
+            products = productService.findAllByOrderByPrice();
+
+        }
+        model.addAttribute("products", products);
+        return "/list";
+
     }
 
     @GetMapping("/create")

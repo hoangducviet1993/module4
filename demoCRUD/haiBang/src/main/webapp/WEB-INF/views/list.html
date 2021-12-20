@@ -11,12 +11,17 @@
     </a>
 </p>
 </p>
+<form action="/products" id="form">
+    <input type="text" name="key" placeholder="Search by name">
+<!--    <button>Search by name</button>-->
+    <button><a href="/products/sort">Sort by price</a></button>
+</form>
 <div class="notify">
     <div th:if="${message}">
         <span th:text="${message}"></span>
     </div>
 </div>
-<table id = "customers">
+<table id="customers">
     <thead>
     <tr>
         <th>Name</th>

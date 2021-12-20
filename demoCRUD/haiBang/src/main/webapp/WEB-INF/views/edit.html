@@ -18,29 +18,37 @@
           method="POST" novalidate="novalidate">
         <input th:type="hidden" name="id" th:field="*{id}">
         <div>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}"/></td>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}"/>
         </div>
         <div>
-            <td>Price:</td>
-            <td><input type="text" th:field="*{price}"/></td>
+            <label>Price:</label>
+            <input type="text" th:field="*{price}"/>
         </div>
         <div>
-            <td>Quantity:</td>
-            <td><input type="text" th:field="*{quantity}"/></td>
+            <label>Quantity:</label>
+            <input type="text" th:field="*{quantity}"/>
         </div>
         <div>
-            <td>Color:</td>
-            <td><input type="text" th:field="*{color}"/></td>
+            <label>Color:</label>
+            <input type="text" th:field="*{color}"/>
         </div>
         <div>
-            <td>Category:</td>
-            <td>
+            <label>Category:</label>
+
                 <select th:field="*{category}">
                     <option th:each="c : ${categories}"
                             th:value="${c.id}" th:text="${c.name}"></option>
                 </select>
-            </td>
+<!--            <select name="category">-->
+<!--                <option th:each="c : ${categories}"-->
+<!--                        th:value="${c.id}"-->
+<!--                        th:text="${c.name}"-->
+<!--                        th:selected="(${product.category}) and (${c.id} == ${product.category.id})"></option>-->
+<!--                &lt;!&ndash;                    Việc dùng thẻ th:selected sẽ trỏ ra giá trị hiện tại của product muốn sửa thông tin&ndash;&gt;-->
+<!--                &lt;!&ndash;                    th:selected ko làm việc với *field , phải dùng name đặt cho select &ndash;&gt;-->
+<!--            </select>-->
+
         </div>
         <input type="submit" value="Edit"/>
     </form>
