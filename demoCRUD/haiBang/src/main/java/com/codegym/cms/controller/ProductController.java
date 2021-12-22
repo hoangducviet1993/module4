@@ -5,12 +5,15 @@ import com.codegym.cms.model.Product;
 import com.codegym.cms.service.ICategoryService;
 import com.codegym.cms.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -65,7 +68,14 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String saveProduct(Model model, @ModelAttribute("products") Product product) {
+    public String saveProduct(Model model, Product product ,@RequestParam MultipartFile image1) {
+        String fileName = image1.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(image1.getBytes(), new File("D:\\image2\\" + fileName));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        product.setImage(fileName);
         productService.save(product);
         model.addAttribute("product", new Product());
         model.addAttribute("message", "New product created successfully");

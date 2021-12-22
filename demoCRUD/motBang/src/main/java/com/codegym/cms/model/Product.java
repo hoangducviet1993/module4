@@ -12,15 +12,17 @@ public class Product {
     private int price;
     private int quantity;
     private String color ;
+    private String image;
 
     public Product() {
     }
 
-    public Product(String name, int price, int quantity, String color) {
+    public Product(String name, int price, int quantity, String color, String image) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.color = color;
+        this.image = image;
     }
 
     public Long getId() {
@@ -61,5 +63,13 @@ public class Product {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

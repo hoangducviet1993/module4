@@ -34,21 +34,16 @@
             <input type="text" th:field="*{color}"/>
         </div>
         <div>
+            <label>Image</label>
+            <input type="file" th:field="*{image}"/>
+        </div>
+        <div>
             <label>Category:</label>
 
                 <select th:field="*{category}">
                     <option th:each="c : ${categories}"
                             th:value="${c.id}" th:text="${c.name}"></option>
                 </select>
-<!--            <select name="category">-->
-<!--                <option th:each="c : ${categories}"-->
-<!--                        th:value="${c.id}"-->
-<!--                        th:text="${c.name}"-->
-<!--                        th:selected="(${product.category}) and (${c.id} == ${product.category.id})"></option>-->
-<!--                &lt;!&ndash;                    Việc dùng thẻ th:selected sẽ trỏ ra giá trị hiện tại của product muốn sửa thông tin&ndash;&gt;-->
-<!--                &lt;!&ndash;                    th:selected ko làm việc với *field , phải dùng name đặt cho select &ndash;&gt;-->
-<!--            </select>-->
-
         </div>
         <input type="submit" value="Edit"/>
     </form>

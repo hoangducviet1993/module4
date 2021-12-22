@@ -14,28 +14,32 @@
     </div>
 </div>
 <div id="form">
-    <form th:action="@{/products/create}" th:object="${product}"
-          method="POST" novalidate="novalidate">
-        <input th:type="hidden" name="id" th:field="*{id}">
+    <form th:action="@{/products/create}"
+          method="POST" novalidate="novalidate"  enctype="multipart/form-data">
+        <input th:type="hidden" name="id" >
         <div>
             <label>Name:</label>
-            <input type="text" th:field="*{name}"/>
+            <input type="text" name="name"/>
         </div>
         <div>
             <label>Price:</label>
-            <input type="text" th:field="*{price}"/>
+            <input type="text" name="price" />
         </div>
         <div>
             <label>Quantity:</label>
-            <input type="text" th:field="*{quantity}"/>
+            <input type="text" name="quantity"/>
         </div>
         <div>
             <label>Color:</label>
-            <input type="text" th:field="*{color}"/>
+            <input type="text" name="color"/>
+        </div>
+        <div>
+            <label>Image</label>
+            <input type="file" name="image1"/>
         </div>
         <div>
             <label>Category:</label>
-            <select th:field="*{category}">
+            <select name="category">
                 <option th:each="c : ${categories}"
                         th:value="${c.id}" th:text="${c.name}"></option>
             </select>
