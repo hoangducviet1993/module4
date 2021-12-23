@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>students</h3>
+<p>
+<p>
+    <a th:href="@{/students/create}">
+        Create new Student
+    </a>
+</p>
+</p>
+<form action="/students" id="form">
+    <input type="text" name="key" placeholder="Search by name">
+    <!--    <button>Search by name</button>-->
+    <button><a href="/students/sort">Sort by price</a></button>
+</form>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Score</th>
+<!--        <th>Image</th>-->
+        <th>ClassRoom</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.age}"></td>
+        <td th:text="${student.score}"></td>
+<!--        <td><img width="100" height="100" th:src="@{'/image/' + ${student.image}}" alt=""></td>-->
+        <td th:if="${student.classRoom}" th:text="${student.classRoom.name}"></td>
+        <td th:unless="${student.classRoom}"></td>
+        <td><a th:href="@{/students/edit/__${student.id}__ }">Edit</a></td>
+        <td><a th:href="@{/students/delete/__${student.id}__ } "
+               onclick="return confirm('Are you sure?')">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{'/students'(page=${students.number - 1},key=${key})}" th:if="${students.hasPrevious()}">Previous</a>
+    <span th:text="${students.number + 1}"></span>/<span th:text="${students.totalPages}"></span>
+    <a th:href="@{'/students'(page=${students.number + 1},key=${key})}" th:if="${students.hasNext()}">Next</a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
