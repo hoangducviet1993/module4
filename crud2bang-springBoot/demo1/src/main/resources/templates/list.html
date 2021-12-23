@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Products</h3>
+<p>
+<p>
+    <a th:href="@{/products/create}">
+        Create new product
+    </a>
+</p>
+</p>
+<form action="/products" id="form">
+    <input type="text" name="key" placeholder="Search by name">
+<!--    <button>Search by name</button>-->
+    <button><a href="/products/sort">Sort by price</a></button>
+</form>
+<!--<div class="notify">-->
+<!--    <div th:if="${message}">-->
+<!--        <span th:text="${message}"></span>-->
+<!--    </div>-->
+<!--</div>-->
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Color</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.color}"></td>
+        <td><img width="100" height="100" th:src="@{'img/' + ${product.image}}" alt=""></td>
+        <td th:if="${product.category}" th:text="${product.category.name}"></td>
+        <td th:unless="${product.category}"></td>
+        <td><a th:href="@{/products/edit/__${product.id}__ }">Edit</a></td>
+        <td><a th:href="@{/products/delete/__${product.id}__ } "
+               onclick="return confirm('Are you sure?')">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
