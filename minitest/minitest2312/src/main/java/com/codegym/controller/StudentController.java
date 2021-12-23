@@ -40,7 +40,7 @@ public class StudentController {
         return "/student/list";
     }
     @GetMapping("score-greater-than-8")
-    public String showListScoreGreaterThan8(Model model, String key, @PageableDefault(value = 3, sort = "score") Pageable pageable) {
+    public String showListScoreGreaterThan8(Model model, String key, @PageableDefault(value = 10, sort = "score") Pageable pageable) {
         Page<Student> students;
         if (key != null) {
             students = studentService.findByNameContaining(key, pageable);
