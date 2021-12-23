@@ -27,11 +27,14 @@ public class StudentService implements IStudentService {
     }
 
     @Override
+<<<<<<< HEAD
     public Page<Student> findNameByOrderScoreGreaterThan8(Pageable pageable) {
         return studentRepository.findNameByOrderScoreGreaterThan8(pageable);
     }
 
     @Override
+=======
+>>>>>>> origin/master
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
     }
